@@ -1,26 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GeoController : MonoBehaviour
-{ 
-    string variable2 = "Hello ";
-    private int firstNum = 3;
+{
+    private Rigidbody2D RB;
+    public int SPD = 7;
+    public string nextLevel = "L2";
+    public string falseLevel = "L1";
+
     // Start is called before the first frame update
     void Start()
     {
-        string variable1 = "World";
-        Debug.Log(variable2 + variable1);
-
-
+         RB = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        Debug.Log(firstNum++);
+        float xinput = Input.GetAxis("Horizontal");
+        RB.velocity = new Vector2(xinput*SPD, RB.velocity.y);
+        
+    }
 
-        if (Input.GetKeyDown(KeyCode.W)) ;
-        transform.position+= new Vector3(0, 5, 0);
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.tag)
+        {
+            case "Death":
+                {
+                    string thisevel = SceneManager.GetActiveScene().name;
+                    SceneManager.LoadScene(thisevel);
+                    break;
+                }
+            case "Finish":
+                {
+                    SceneManager.LoadScene(nextLevel);
+                    break;
+                }
+            case "FalseCheck":
+                {
+                    SceneManager.LoadScene(falseLevel);
+                    break;
+                }
+        }
     }
 }
