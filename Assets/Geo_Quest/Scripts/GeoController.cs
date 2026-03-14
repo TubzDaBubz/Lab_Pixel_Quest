@@ -8,7 +8,6 @@ public class GeoController : MonoBehaviour
     private Rigidbody2D RB;
     public int SPD = 7;
     public string nextLevel = "L2";
-    public string falseLevel = "L1";
 
     // Start is called before the first frame update
     void Start()
@@ -36,14 +35,12 @@ public class GeoController : MonoBehaviour
                 }
             case "Finish":
                 {
+                    string nextLevel = collision.transform.GetComponent<LevelGoal>().nextLevel;
                     SceneManager.LoadScene(nextLevel);
                     break;
                 }
-            case "FalseCheck":
-                {
-                    SceneManager.LoadScene(falseLevel);
-                    break;
-                }
+            
+                
         }
     }
 }
