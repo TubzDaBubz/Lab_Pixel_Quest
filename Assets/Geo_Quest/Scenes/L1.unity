@@ -1412,7 +1412,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SPD: 10
   nextLevel: L2
-  falseLevel: L1
 --- !u!212 &1512511717
 SpriteRenderer:
   m_ObjectHideFlags: 0
