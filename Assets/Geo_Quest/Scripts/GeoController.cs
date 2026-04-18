@@ -20,13 +20,18 @@ public class GeoController : MonoBehaviour
     {
         float xinput = Input.GetAxis("Horizontal");
         RB.velocity = new Vector2(xinput*SPD, RB.velocity.y);
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.tag)
         {
+            case "Coin":
+                {
+                 
+                    Destroy(collision.gameObject);
+                    break;
+                }
             case "Death":
                 {
                     string thisevel = SceneManager.GetActiveScene().name;
